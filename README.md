@@ -1,5 +1,3 @@
-# Worksapce automater
-
 ## workspace automater is a command line tool for creating workspaces assembling multiple apps to run with a single command
 
 # Usage
