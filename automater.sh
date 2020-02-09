@@ -24,7 +24,7 @@ create(){
     main
     apps=("$@")
     for i in `seq 2 $#`; do
-            app+=" "${apps[i]}" "
+            app+=" "${apps[i]}
     done
 
     if grep -q $2 ~/.automater_workspaces; then
@@ -35,20 +35,8 @@ create(){
     fi
 }
 # create $@
-# TO-DO : start function
-start(){
-        main
-        if grep -q $2 ~/.automater_workspaces; then
-            ## openning apps ##
-            echo "hello"
-        else
-            echo "++$2 workspace do not exist 🤥 , please create your workspace"
-        fi
-}
-
-# start $@
 # TO-DO : openning apps
-lunch(){
+launch(){
     ## getting the line off workspace ##
     workSpaceLineNumber=`awk "/$2/{ print NR; exit }" ~/.automater_workspaces`
     ## getting worspace apps (q quits when line number is NUM , d deletes it instead of printing it)##
@@ -57,10 +45,39 @@ lunch(){
     IFS=' ' read -ra apps <<< "$result"
     ## openning apps ##
     for i in `seq 1 ${#apps[@]}`; do
-        `open -a ${apps[i]}`
+        if [ ! -z ${apps[i]} ]; then
+            result=$(resolve ${apps[i]})
+            if [ ! "$result" ]; then
+                    echo "++the app ${apps[i]} do not exist 😩 "
+                    continue
+                else
+                    echo "++found ${apps[i]} opening ..🌪 "
+                    `open -a ${apps[i]}`
+            fi
+        fi
     done
+    echo "Done 😎 "
 }
-lunch $@
-# TO-DO : resolving app name
+# TO-DO : start function
+start(){
+        main
+        if grep -q $2 ~/.automater_workspaces; then
+            ## openning apps ##
+            launch $@
+        else
+            echo "++$2 workspace do not exist 🤥 , please create your workspace"
+        fi
+}
+# start $@
+# TO-DO : resolving app name and verification
+resolve(){
+    app=`cd /Applications/ && find . -iname *$1* -type d -maxdepth 1 && cd`
+    if [[ $app ]]; then
+            echo $app
+        else
+            return 0
+    fi
+}
+# start $@
 # TO-DO : delete function
 # TO-DO : close function
