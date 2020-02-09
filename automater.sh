@@ -4,7 +4,6 @@ init(){
     var='\n#automater things :P\nif [ -f ~/.automater_workspaces ]; then\n. ~/.automater_workspaces\nfi'
     if [ -f /etc/bashrc ]; then
         `echo -e $var >> /etc/bashrc`
-            echo "+"
         else
             echo "make sure your bashrc file is correct 😩"
     fi
