@@ -48,7 +48,7 @@ start(){
 
 # start $@
 # TO-DO : openning apps
-open(){
+lunch(){
     ## getting the line off workspace ##
     workSpaceLineNumber=`awk "/$2/{ print NR; exit }" ~/.automater_workspaces`
     ## getting worspace apps (q quits when line number is NUM , d deletes it instead of printing it)##
@@ -56,11 +56,11 @@ open(){
     ## eliminating spaces ##
     IFS=' ' read -ra apps <<< "$result"
     ## openning apps ##
-    for i in `seq 2 ${#apps[@]}`; do
-        ## TO FIX ##
-        `open -a Sublime`
+    for i in `seq 1 ${#apps[@]}`; do
+        `open -a ${apps[i]}`
     done
 }
-open
+lunch $@
+# TO-DO : resolving app name
 # TO-DO : delete function
 # TO-DO : close function
