@@ -25,7 +25,7 @@ init(){
     if [ -f /etc/zshrc ]; then
         `touch ~/.zsh_aliases`
         `cp ./worksapceAutomater/automater.sh /usr/local/bin`
-        `echo alias automater='zsh automater.sh' >> ~/.zsh_aliases`
+        `echo alias automater='zsh /usr/local/bin/automater.sh' >> ~/.zsh_aliases`
         `echo -e $var >> /etc/zshrc`
         else
             echo "make sure your zshrc file is correct & you have right permissions 😩 "
@@ -80,7 +80,7 @@ launch(){
                     continue
                 else
                     echo "++found ${apps[i]} opening ..🌪 "
-                    ## TO FIX AT THE NEXT UPDATE v(app name)##
+                    ## TO FIX AT THE NEXT UPDATE v(app name) ##
                     v1="${result/\.\//}"
                     v2="${v1/\.app/}"
                     v3="${v2/ /\ }"
