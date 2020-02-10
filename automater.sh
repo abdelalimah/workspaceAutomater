@@ -25,7 +25,7 @@ init(){
     if [ -f /etc/zshrc ]; then
         `touch ~/.zsh_aliases`
         `cp ./worksapceAutomater/automater.sh /usr/local/bin`
-        `echo alias automater='zsh automater.sh' >> /.zsh_aliases`
+        `echo alias automater='zsh automater.sh' >> ~/.zsh_aliases`
         `echo -e $var >> /etc/zshrc`
         else
             echo "make sure your zshrc file is correct & you have right permissions 😩 "
