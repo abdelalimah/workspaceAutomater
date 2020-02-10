@@ -23,7 +23,7 @@ init(){
     fi
 
     if [ -f /etc/zshrc ]; then
-        `touch ~/.zsh_aliases`
+        `sudo touch ~/.zsh_aliases`
         `sudo cp ./worksapceAutomater/automater.sh /usr/local/bin`
         `sudo echo alias automater="'zsh /usr/local/bin/automater.sh'" >> ~/.zsh_aliases`
         `sudo echo -e $var >> /etc/zshrc`
