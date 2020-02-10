@@ -16,20 +16,20 @@ init(){
         exit;
     fi
 
-    var='\n#automater things :P\nif [ -f ~/.zsh_aliases ]; then\n. ~/.zsh_aliases\nfi'
+    var='\n#automater things :P\nif [ -f ~/.bash_aliases ]; then\n. ~/.bash_aliases\nfi'
 
-    if grep -q 'automater things' /etc/zshrc; then
+    if grep -q 'automater things' /etc/bashrc; then
         echo "you are already good to go 🦋 "
         exit;
     fi
 
-    if [ -f /etc/zshrc ]; then
-        `touch ~/.zsh_aliases`
+    if [ -f /etc/bashrc ]; then
+        `touch ~/.bash_aliases`
         `cp ./workspaceAutomater/automater.sh /usr/local/bin`
-        `echo alias automater="'zsh /usr/local/bin/automater.sh'" >> ~/.zsh_aliases`
-        `echo -e $var >> /etc/zshrc`
+        `echo alias automater="'bash /usr/local/bin/automater.sh'" >> ~/.bash_aliases`
+        `echo -e $var >> /etc/bashrc`
         else
-            echo "make sure your zshrc file is correct & you have right permissions 😩 "
+            echo "make sure your bashrc file is correct & you have right permissions 😩 "
             exit;
     fi
     main
@@ -66,12 +66,12 @@ resolve(){
 }
 # TO-DO : openning apps
 launch(){
-    ## getting the line off workspace ##
+    ## getting the line of workspace ##
     workSpaceLineNumber=`awk "/$2/{ print NR; exit }" ~/.automater_workspaces`
-    ## getting worspace apps (q quits when line number is NUM , d deletes it instead of printing it)##
+    ## getting worKspace apps (q quits when line number is NUM , d deletes it instead of printing it)##
     result=`sed "${workSpaceLineNumber}q;d" ~/.automater_workspaces`
     ## eliminating spaces ##
-    IFS=' ' read -ra apps <<< "$result"
+    IFS='  ' read -r -a apps <<< "$result"
     ## openning apps ##
     for i in `seq 1 ${#apps[@]}`; do
         if [ ! -z ${apps[i]} ]; then
@@ -89,13 +89,13 @@ launch(){
             fi
         fi
     done
-    echo "Done Enjoy 😎 "
+    echo "Done 🥋 "
 }
 # TO-DO : start function
 start(){
         if [ "$#" -gt "2" ]; then
-        check
-        exit;
+            check
+            exit;
          fi
         if grep -q $2 ~/.automater_workspaces; then
             ## openning apps ##
@@ -106,7 +106,7 @@ start(){
 }
 #command error
 check(){
-    if ! grep -q 'automater things' /etc/zshrc; then
+    if ! grep -q 'automater things' /etc/bashrc; then
         echo "Please run 'automater setup' first 🛠 "
         exit;
     fi
