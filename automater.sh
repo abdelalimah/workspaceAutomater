@@ -17,21 +17,22 @@ init(){
 
     var='\n#automater things :P\nif [ -f ~/.automater_aliases ]; then\n. ~/.automater_aliases\nfi'
 
-    if grep -q 'automater things' /etc/bashrc; then
+    if grep -q 'automater things' /etc/zshrc; then
         echo "you are already good to go 🦋 "
         exit;
     fi
 
-    if [ -f /etc/bashrc ]; then
+    if [ -f /etc/zshrc ]; then
         `touch ~/.automater_aliases`
-        `echo alias automater='bash automater.sh' >> ~/.automater_aliases`
-        `echo -e $var >> /etc/bashrc`
+        `cp ./worksapceAutomater/automater.sh ~/usr/local/bin`
+        `echo alias automater='zsh automater.sh' >> ~/.automater_aliases`
+        `echo -e $var >> /etc/zshrc`
         else
-            echo "make sure your bashrc file is correct & you have right permissions 😩 "
+            echo "make sure your zshrc file is correct & you have right permissions 😩 "
             exit;
     fi
     main
-    echo "All set & ready to go , Enjoy your work 🦄 "
+    echo "All set & ready to go , restart your terminal & enjoy your work 🦄 "
 }
 
 # TO-DO : create function
@@ -104,7 +105,7 @@ start(){
 }
 #command error
 check(){
-    if ! grep -q 'automater things' /etc/bashrc; then
+    if ! grep -q 'automater things' /etc/zshrc; then
         echo "Please run 'automater setup' first 🛠 "
         exit;
     fi
