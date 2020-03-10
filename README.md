@@ -3,7 +3,7 @@
 
 ## Setup : copy and past the following command in your terminal
 
-git clone https://github.com/abdelalimah/workspaceAutomater.git && sudo bash workspaceAutomater/automater.sh setup && cd && rm -rf workspaceAutomater
+git clone https://github.com/abdelalimah/workspace-automater.git && sudo bash workspaceAutomater/automater.sh setup && cd && rm -rf workspaceAutomater
 
 ## Creating a workspace
 automater create workspace_name app1_name app1_name ...
