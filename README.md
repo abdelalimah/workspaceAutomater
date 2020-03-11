@@ -19,4 +19,4 @@ automater delete workspace_name
 ##
 to edit or delete a workspace please refer to /.automater_workspaces on your root directory and modify it with your favorite text editor
 ##
-Enjoy 🦊
+Enjoy 🦊.
